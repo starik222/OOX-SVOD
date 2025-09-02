@@ -9,6 +9,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Platforms>AnyCPU;x86</Platforms>
     <ApplicationIcon>svod.ico</ApplicationIcon>
+	<PublishSingleFile>true</PublishSingleFile>
+    <EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -37,5 +39,17 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+  <Target Name="MoveNativeDllsToSubDirectory" AfterTargets="Publish">
+    <PropertyGroup>
+      <NativeDllSubDir>$(RuntimeIdentifier)</NativeDllSubDir>
+    </PropertyGroup>
+    <ItemGroup>
+      <NativeDllsToMove Include="$(PublishDir)*.dll" />
+    </ItemGroup>
+    <Move SourceFiles="@(NativeDllsToMove)" 
+          DestinationFolder="$(PublishDir)\$(NativeDllSubDir)\" />
+    <Message Text="Moved native dlls to sub-directory '$(NativeDllSubDir)'" 
+             Importance="high" />
+  </Target>
 
 </Project>

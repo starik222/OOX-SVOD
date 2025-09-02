@@ -56,7 +56,7 @@ namespace OOX_SVOD
             AddToLog($"Все отчеты успешно прочитаны, идет формирование свода...");
             try
             {
-                string svodFileName = $"{DateTime.Now.ToString("dd-MM-yyyy_HH-mm-ss")}.xls";
+                string svodFileName = $"{DateTime.Now.ToString("dd-MM-yyyy_HH-mm-ss")}.xlsx";
                 string svodFilePath = Path.Combine(Program.OutputPath, svodFileName);
                 await summary.SaveSvodAsync(svodFilePath);
                 AddToLog($"Свод успешно сохранен в файле: {svodFileName}");
