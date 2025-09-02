@@ -100,7 +100,9 @@ namespace OOX_SVOD
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-
+            Form_about about = new Form_about();
+            about.ShowDialog();
+            about.Close();
         }
     }
 }
